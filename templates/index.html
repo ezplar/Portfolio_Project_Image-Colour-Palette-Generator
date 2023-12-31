@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Color Palette Generator</title>
+
+
+</head>
+
+
+<body>
+    <form action="{{ url_for('home') }}" method="post" enctype="multipart/form-data">
+        <b>File to upload:</b><br>
+        <input type="file" id="myFile" name="file-new"><br>
+
+        <br><b>Number of Colors:</b><br>
+        <input type="text" value="" name="num-colors"><br>
+
+        <input type="submit" value="Run">
+    </form><br>
+
+    <div class="container">
+        <img src="static/images/{{ img }}">
+    </div><br>
+
+    <div>
+        <b>Dominant Color: </b>
+        {{ hex_dom }}
+        <div class="color" style="width: 100px; height: 30px; background-color: {{ hex_dom }} "></div>
+    </div><br>
+
+    <div>
+        <b>Random Unique Colors</b>
+    <table>
+        <tr>
+            <th>Color: </th>
+            <th>Color Code: </th>
+        </tr>
+        {% for i in hex: %}
+        <tr>
+            <td>
+                <div class="color" style="width: 100px; height: 30px; background-color: {{ i }} "></div><br>
+            </td>
+            <td>
+                <div>{{ i }}</div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+    <div>
+        <b>Common Colors:</b>
+    <table>
+        <tr>
+            <th>Color: </th>
+            <th>Color Code: </th>
+        </tr>
+        {% for k in hex2: %}
+        <tr>
+            <td>
+                <div class="color" style="width: 100px; height: 30px; background-color: {{ k }} "></div><br>
+            </td>
+            <td>
+                <div>{{ k }}</div>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+
+</body>
+</html>
